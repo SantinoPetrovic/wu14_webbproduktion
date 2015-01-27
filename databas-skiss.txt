@@ -54,7 +54,7 @@ menu_link_id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 title varchar(255) NOT NULL,
 url_path varchar(255) NOT NULL,
 menu varchar(255) NOT NULL FOREIGN KEY REFERENCES menus(machine_name),
-parent_link_id NULL FOREIGN KEY REFERENCES menu_links(menu_link_id),
+parent_link_id int(11) NULL FOREIGN KEY REFERENCES menu_links(menu_link_id),
 weight int(11) DEFAULT 0
 );
 
