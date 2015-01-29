@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <script src="js/libs/jquery-2.1.3.js"></script>
         <script src="js/libs/bootstrap.js"></script>
+        <script src="js/main.js"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" href="css-libs/meyer-reset.css">
         <link rel="stylesheet" href="css/main.css">
@@ -116,18 +117,37 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group addAs">
                             <label class="col-sm-3 control-label"> Add as </label>
-
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="button" class="btn buttonCategory">Category</button>
+                                        <button type="submit" class="btn buttonCategory">Category</button>
                                         <button type="button" class="btn buttonPage">Page</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                            <div class="pageFormular">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"> Select Category:  </label>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="7" required></textarea>
+                                    </div>
+                                </div>
+
+                            <label class="col-sm-3 control-label"> Select button: </label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="submit" class="btn pageAccept">Accept</button>
+                                        <button type="button" class="btn pageCancel">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </form>
                 </section>
             </section>

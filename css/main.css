@@ -16,12 +16,12 @@ button {
 	height: 50px;
 }
 
-.buttonCategory, .buttonPage {
+.buttonCategory, .buttonPage, .pageAccept, .pageCancel {
 	background-color: #00FF20;
 	border: 2px solid black;	
 }
 
-.buttonCategory:hover, .buttonPage:hover {
+.buttonCategory:hover, .buttonPage:hover, .pageAccept:hover, .pageCancel:hover {
 	border: 2px solid white;
 }
 
