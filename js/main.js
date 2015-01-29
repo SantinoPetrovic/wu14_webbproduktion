@@ -2,7 +2,7 @@ $(function(){
 
 	$(".pageFormular").hide();
 		$(".buttonCategory").submit(function(){
-
+			return false;
 		});
 
 	$(".buttonPage").click(function(){
@@ -15,18 +15,18 @@ $(function(){
 		$(".pageFormular").slideUp(300);
 	});
 
-	$(".submitButton").submit(function(){
+	$(".submitButton").click(function(){
 		var insertContent = {
 			":title" : $(this).find("#titleValue").val(),
 			":content" : $(this).find("#contentValue").val()
 		};
 
 		$.ajax({
-			url: "php/store_content.php",
+			url: "php/data.php",
 			type: "post",
 			dataType: "json",
 			data: {
-
+				"insertContent" : insertContent
 			},
 			success: function(data){
 				console.log("store_content success: ", data);
