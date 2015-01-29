@@ -11,8 +11,18 @@ main {
     background-color: #E5E5E5;
 }
 
-.wow {
-    background-color: #D5D5D5;
+button {
+	width: 100px;
+	height: 50px;
+}
+
+.buttonCategory, .buttonPage {
+	background-color: #00FF20;
+	border: 2px solid black;	
+}
+
+.buttonCategory:hover, .buttonPage:hover {
+	border: 2px solid white;
 }
 
 .checkboxYesText {
