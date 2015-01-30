@@ -17,10 +17,9 @@ $(function(){
 
 	$(".submitButton").click(function(){
 		var insertContent = {
-			":title" : $(this).find("#titleValue").val(),
-			":content" : $(this).find("#contentValue").val()
+			":title" : $("#titleValue").val(),
+			":content" : $("#contentValue").val()
 		};
-
 		$.ajax({
 			url: "php/data.php",
 			type: "post",
