@@ -11,8 +11,8 @@ class ContentMachine extends PDOHelper {
         // unset($insertContent[":path"]);
         // $menu_data = $insertContent["menuData"];
         // unset($insertContent["menuData"]);
-        $pageSQL = "INSERT INTO pages (title, content) VALUES (:title, :content)";
-        $this->query($insertContent);
+        $sql = "INSERT INTO pages (title, content) VALUES (:title, :content)";
+        $this->query($sql, $insertContent);
         return true;
     }
 
