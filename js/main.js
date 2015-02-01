@@ -5,7 +5,7 @@ $(function(){
         dataType: "json",
         success: function(data){
             console.log("get_content success: ", data);
-            $(".saken").html(data.content);
+            $(".saken").append("<h1>" + data[0].title + "</h1>");
         },
         error: function(data){
             console.log("get_content error: ", data);
