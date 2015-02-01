@@ -1,4 +1,16 @@
 $(function(){
+    $.ajax ({
+        url: "php/getdata.php",
+        type: "post",
+        dataType: "json",
+        success: function(data){
+            console.log("get_content success: ", data);
+            $(".saken").html(data.content);
+        },
+        error: function(data){
+            console.log("get_content error: ", data);
+        }
+    });
 
 	$(".pageFormular").hide();
 		$(".buttonCategory").submit(function(){
@@ -21,13 +33,14 @@ $(function(){
 			":content" : $("#contentValue").val()
 		};
 		$.ajax({
-			url: "php/data.php",
+			url: "php/savedata.php",
 			type: "post",
 			dataType: "json",
 			data: {
 				"insertContent" : insertContent
 			},
 			success: function(data){
+                alert('Page saved!');
 				console.log("store_content success: ", data);
 			},
 			error: function(data){
