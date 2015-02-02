@@ -1,11 +1,13 @@
 $(function(){
+    $(".addAsPage").hide();
+    $(".addAsCategory").hide();
     $.ajax ({
         url: "php/getdata.php",
         type: "post",
         dataType: "json",
         success: function(data){
             console.log("get_content success: ", data);
-            $(".saken").append("<h1>" + data[0].title + "</h1>");
+            // $(".saken").append("<h1>" + data[0].title + "</h1>");
         },
         error: function(data){
             console.log("get_content error: ", data);
@@ -18,16 +20,21 @@ $(function(){
 		});
 
 	$(".buttonPage").click(function(){
-		$(".pageFormular").slideDown(300);
+		$(".addAsPage").slideDown(300);
+        $(".addAsCategory").slideUp(300);
 	});
 
-	// $("").click(function(){});
+    $(".buttonCategory").click(function(){
+        $(".addAsCategory").slideDown(300);
+        $(".addAsPage").slideUp(300);
+    });
+
 
 	$(".pageCancel").click(function(){
-		$(".pageFormular").slideUp(300);
+		$(".addAsPage").slideUp(300);
 	});
 
-	$(".submitButton").click(function(){
+	$(".submitPage").click(function(){
 		var insertContent = {
 			":title" : $("#titleValue").val(),
 			":content" : $("#contentValue").val()
