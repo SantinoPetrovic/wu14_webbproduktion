@@ -14,10 +14,18 @@ $(function(){
         }
     });
 
-	$(".pageFormular").hide();
-		$(".buttonCategory").submit(function(){
-			return false;
-		});
+        $.ajax ({
+        url: "php/getdataCategory.php",
+        type: "post",
+        dataType: "json",
+        success: function(data){
+            console.log("get_content success: ", data);
+            // $("h1").html(data[0].title);
+        },
+        error: function(data){
+            console.log("get_content error: ", data);
+        }
+    });
 
 	$(".buttonPage").click(function(){
 		$(".addAsPage").slideDown(300);
@@ -32,6 +40,7 @@ $(function(){
 
 	$(".pageCancel").click(function(){
 		$(".addAsPage").slideUp(300);
+        $(".addAsCategory").slideUp(300);
 	});
 
 	$(".submitPage").click(function(){
@@ -56,4 +65,26 @@ $(function(){
 		});
 		return false;
 	});
+
+    $(".submitCategory").click(function(){
+        var insertCategory = {
+            ":title" : $("#titleValueCategory").val()
+        };
+        $.ajax({
+            url: "php/savedataCategory.php",
+            type: "post",
+            dataType: "json",
+            data: {
+                "insertCategory" : insertCategory
+            },
+            success: function(data){
+                alert('Category saved!');
+                console.log("store_content success: ", data);
+            },
+            error: function(data){
+                console.log("store_content error: ", data);
+            }
+            });
+        return false;
+    });
 });

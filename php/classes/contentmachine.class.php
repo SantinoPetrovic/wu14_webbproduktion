@@ -20,4 +20,14 @@ class ContentMachine extends PDOHelper {
         return $this->query($sql);
     }
 
+    public function saveCategory($insertCategory) {
+        $sql = "INSERT INTO categories (title) VALUES (:title)";
+        $this->query($sql, $insertCategory);
+    }
+
+    public function getCategory() {
+        $sql ="SELECT title FROM categories WHERE category_id = 1";
+        return $this->query($sql);
+    }
+
 }
