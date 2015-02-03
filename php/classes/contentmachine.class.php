@@ -16,7 +16,7 @@ class ContentMachine extends PDOHelper {
         return true;
     }
     public function getContent() {
-        $sql ="SELECT title, content FROM pages WHERE title = 'Who' ";
+        $sql ="SELECT title, content FROM pages";
         return $this->query($sql);
     }
 

@@ -2,19 +2,6 @@ $(function(){
     $(".addAsPage").hide();
     $(".addAsCategory").hide();
     $.ajax ({
-        url: "php/getdata.php",
-        type: "post",
-        dataType: "json",
-        success: function(data){
-            console.log("get_page success: ", data);
-            // $(".saken").append("<h1>" + data[0].title + "</h1>");
-        },
-        error: function(data){
-            console.log("get_page error: ", data);
-        }
-    });
-
-        $.ajax ({
         url: "php/getdataCategory.php",
         type: "post",
         dataType: "json",
@@ -23,12 +10,29 @@ $(function(){
             // $("h1").html(data[0].title);
             for(var i in data){
                 $(".categoryContainer").append(
-                    "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + data[0].title + "<span class='caret'></span></a><ul class='dropdown-menu' role='menu'></ul></li>");
+                    "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + data[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' role='menu'></ul></li>"
+                    );
                 // console.log(data[i].title);
             }
         },
         error: function(data){
             console.log("get_category error: ", data);
+        }
+    });
+
+    $.ajax ({
+        url: "php/getdata.php",
+        type: "post",
+        dataType: "json",
+        success: function(data){
+            console.log("get_page success: ", data);
+            for(var j in data){
+                $(".pageContent").append("<li><a href='#'>" + data[j].title + "</a></li>"
+                    );
+            }
+        },
+        error: function(data){
+            console.log("get_page error: ", data);
         }
     });
 
