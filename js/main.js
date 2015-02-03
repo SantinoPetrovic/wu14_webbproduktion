@@ -22,7 +22,8 @@ $(function(){
             console.log("get_category success: ", data);
             // $("h1").html(data[0].title);
             for(var i in data){
-                // $("").html();
+                $(".categoryContainer").append(
+                    "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + data[0].title + "<span class='caret'></span></a><ul class='dropdown-menu' role='menu'></ul></li>");
                 // console.log(data[i].title);
             }
         },
