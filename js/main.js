@@ -6,11 +6,11 @@ $(function(){
         type: "post",
         dataType: "json",
         success: function(data){
-            console.log("get_content success: ", data);
+            console.log("get_page success: ", data);
             // $(".saken").append("<h1>" + data[0].title + "</h1>");
         },
         error: function(data){
-            console.log("get_content error: ", data);
+            console.log("get_page error: ", data);
         }
     });
 
@@ -19,11 +19,15 @@ $(function(){
         type: "post",
         dataType: "json",
         success: function(data){
-            console.log("get_content success: ", data);
+            console.log("get_category success: ", data);
             // $("h1").html(data[0].title);
+            for(var i in data){
+                // $("").html();
+                // console.log(data[i].title);
+            }
         },
         error: function(data){
-            console.log("get_content error: ", data);
+            console.log("get_category error: ", data);
         }
     });
 
@@ -79,10 +83,10 @@ $(function(){
             },
             success: function(data){
                 alert('Category saved!');
-                console.log("store_content success: ", data);
+                console.log("store_category success: ", data);
             },
             error: function(data){
-                console.log("store_content error: ", data);
+                console.log("store_category error: ", data);
             }
             });
         return false;
