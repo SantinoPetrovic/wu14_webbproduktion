@@ -127,7 +127,10 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Add to category: </label>
                                 <div class="col-sm-8">
+                                <select id="allCategories">
 
+                                    <option>hej</option><option>hejdå</option>
+                                </select>
                                 </div>
                             </div>
 
