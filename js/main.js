@@ -12,6 +12,9 @@ $(function(){
                 $(".categoryContainer").append(
                     "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + data[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' role='menu'></ul></li>"
                     );
+                $("#allCategories").append(
+                    "<option data-categoryID='" + data[i].category_id + "'>" + data[i].title + "</option>");
+                        // console.log($("#catId9").val());
                 // console.log(data[i].title);
             }
         },
@@ -36,6 +39,22 @@ $(function(){
         }
     });
 
+    // $.ajax ({
+    //     url: "php/getdata.php",
+    //     type: "post",
+    //     dataType: "json",
+    //     success: function(data){
+    //         console.log("get_page success: ", data);
+    //         for(var i = 0; i < ){
+    //             $(".pageContent").append("<li><a href='#'>" + data[j].title + "</a></li>"
+    //                 );
+    //         }
+    //     },
+    //     error: function(data){
+    //         console.log("get_page error: ", data);
+    //     }
+    // });
+
 	$(".buttonPage").click(function(){
 		$(".addAsPage").slideDown(300);
         $(".addAsCategory").slideUp(300);
@@ -55,7 +74,8 @@ $(function(){
 	$(".submitPage").click(function(){
 		var insertContent = {
 			":title" : $("#titleValue").val(),
-			":content" : $("#contentValue").val()
+			":content" : $("#contentValue").val(),
+            ":category_id" : $("option:selected").attr('data-categoryID')
 		};
 		$.ajax({
 			url: "php/savedata.php",
@@ -67,6 +87,7 @@ $(function(){
 			success: function(data){
                 alert('Page saved!');
 				console.log("store_content success: ", data);
+                console.log($("option:selected").val());
 			},
 			error: function(data){
 				console.log("store_content error: ", data);

@@ -11,7 +11,7 @@ class ContentMachine extends PDOHelper {
         // unset($insertContent[":path"]);
         // $menu_data = $insertContent["menuData"];
         // unset($insertContent["menuData"]);
-        $sql = "INSERT INTO pages (title, content) VALUES (:title, :content)";
+        $sql = "INSERT INTO pages (title, content, category_id) VALUES (:title, :content, :category_id)";
         $this->query($sql, $insertContent);
         return true;
     }
@@ -26,7 +26,7 @@ class ContentMachine extends PDOHelper {
     }
 
     public function getCategory() {
-        $sql ="SELECT title FROM categories LIMIT 4";
+        $sql ="SELECT category_id, title FROM categories LIMIT 4";
         return $this->query($sql);
     }
 
