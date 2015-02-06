@@ -15,9 +15,16 @@ class ContentMachine extends PDOHelper {
         $this->query($sql, $insertContent);
         return true;
     }
+
     public function getContent() {
-        $sql ="SELECT title, content FROM pages";
+        $sql ="SELECT * FROM pages";
         return $this->query($sql);
+    }
+
+    public function getContentByCat($category_id) {
+        $sql = "SELECT * FROM pages WHERE category_id = :category_id";
+        $parameters = array(":category_id" => $category_id);
+        return $this->query($sql, $parameters);
     }
 
     public function saveCategory($insertCategory) {
