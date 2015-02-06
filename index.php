@@ -34,54 +34,6 @@
                         </form> -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav categoryContainer">
-<!-- <li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>k<span class='caret'></span></a><ul class='dropdown-menu' role='menu'></ul></li> -->
-<!--                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-expanded="false"> Anime Characters <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"> Lelouch </a></li>
-                                        <li><a href="#"> Midousuji Akira </a></li>
-                                        <li><a href="#"> Kaiji </a></li>
-                                        <li><a href="#"> Guts </a></li>
-                                        <li><a href="#"> Hisoka </a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-expanded="false">Video Games <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"> Final Fantasy XV </a></li>
-                                        <li><a href="#"> Warcraft 3 </a></li>
-                                        <li><a href="#"> Mario Kart 8 </a></li>
-                                        <li><a href="#"> Dota 2 </a></li>
-                                        <li><a href="#"> Dark Souls 2 </a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-expanded="false"> Board Games <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"> Dominion </a></li>
-                                        <li><a href="#"> Mahjong </a></li>
-                                        <li><a href="#"> King of Tokyo </a></li>
-                                        <li><a href="#"> Resistance </a></li>
-                                        <li><a href="#"> Small World </a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                     aria-expanded="false"> Cosplay <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#"> Anime Cosplay </a></li>
-                                        <li><a href="#"> Game Cosplay </a></li>
-                                        <li><a href="#"> Marvel Cosplay </a></li>
-                                        <li><a href="#"> TV-serie Cosplay </a></li>
-                                    </ul>
-                                </li>
-                                 -->
                             </ul>
                         </div>
                     </div>
@@ -168,7 +120,6 @@
                             </div>
 
                         </div>
-
                     </form>
                 </section>
             </section>

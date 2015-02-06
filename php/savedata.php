@@ -5,4 +5,4 @@ if (isset($_REQUEST["insertContent"])) {
 
     echo(json_encode($cq->saveContent($_REQUEST["insertContent"])));
 }
-// var_dump($_REQUEST["insertContent"]);
+
