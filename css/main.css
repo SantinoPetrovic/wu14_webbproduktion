@@ -5,6 +5,14 @@ h1 {
     margin-bottom: 30px;
 }
 
+h2 {
+    font-size: 20px;
+    font-family: impact;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
 main {
     border: 2px solid black;
     border-radius: 10px;
@@ -16,16 +24,29 @@ button {
 	height: 50px;
 }
 
-.buttonCategory, .buttonPage, .pageAccept, .pageCancel, .submitCategory, .submitPage {
-	background-color: #00FF20;
-	border: 2px solid black;
-}
 
-.buttonCategory:hover, .buttonPage:hover, .pageAccept:hover, .pageCancel:hover, .submitCategory:hover,
-.submitPage:hover {
-	border: 2px solid white;
-}
 
 .checkboxYesText {
     padding-top: 3px;
+}
+
+
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.navbar-default .navbar-nav > li, .allCategoriesContainer .list-group > li {
+    cursor: pointer;
 }

@@ -1,34 +1,65 @@
 $(function(){
     // This function will always run directly when you go into the page.
     function loadThePage(){
+
         // Empty everyrhing and hide the formular.
         $(".categoryContainer").html("");
         $("#allCategories").html("");
-        $(".addAsPage").hide();
-        $(".addAsCategory").hide();
+        $(".adminMenuPage").hide();
+        $(".homeAdmin").show();
 
+        getCategories(function (result) {
+            var categories = result;
+            console.log(categories);
+            for(var i in categories){
+                $(".categoryContainer").append(
+                    "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + categories[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' data-categoryID='" + categories[i].category_id + "'role='menu'></ul></li>"
+                    );
+                // calling a function after the categories will be displayed on menu.
+                getContentByCat(categories[i].category_id);
+                $("#pageSelectCategory").append(
+                    "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>");
+            }
+        });
+
+    }
+
+// Returns all categories from DB by using AJAX.
+    function getCategories(callback) {
         // AJAX request to get data from category and show it on nav and as options in the <select> element.
         $.ajax ({
             url: "php/getdataCategory.php",
             type: "post",
             dataType: "json",
             success: function(data){
-                console.log("get_category success: ", data);
-                for(var i in data){
-                    $(".categoryContainer").append(
-                        "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + data[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' data-categoryID='" + data[i].category_id + "'role='menu'></ul></li>"
-                        );
-                    // calling a function after the categories will be displayed on menu.
-                    getContentByCat(data[i].category_id);
-                    $("#allCategories").append(
-                        "<option data-categoryID='" + data[i].category_id + "'>" + data[i].title + "</option>");
-                }
+                callback(data);
             },
             error: function(data){
                 console.log("get_category error: ", data);
             }
         });
     }
+
+    function listCategories() {
+        getCategories(function (result) {
+            var categories = result;
+            console.log(categories);
+            $('.allCategoriesContainer .list-group .list-group-item').remove();
+            for(var i in categories){
+                $(".allCategoriesContainer .list-group").append(
+                    "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
+                );
+            }
+
+            $(".editCategoryListItem").click(function(){
+                $(".adminMenuPage").slideUp(300);
+                $(".editCategory").slideDown(300);
+                console.log($(".editCategory").length);
+            });
+        });
+    }
+
+
     // This function will search for pages by category_id.
     function getContentByCat(catId) {
         $.ajax ({
@@ -56,20 +87,16 @@ $(function(){
     loadThePage();
 
 	$(".buttonPage").click(function(){
-		$(".addAsPage").slideDown(300);
-        $(".addAsCategory").slideUp(300);
+        $(".adminMenuPage").slideUp(300);
 	});
 
     $(".buttonCategory").click(function(){
-        $(".addAsCategory").slideDown(300);
-        $(".addAsPage").slideUp(300);
+        $(".adminMenuPage").slideUp(300);
+        $(".allcategories").slideDown(300);
+        listCategories();
     });
 
-    // Slide up everything if you press the cancel button.
-	$(".pageCancel").click(function(){
-		$(".addAsPage").slideUp(300);
-        $(".addAsCategory").slideUp(300);
-	});
+    console.log($(".allCategoriesContainer .list-group .list-group-item").val);
 
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){

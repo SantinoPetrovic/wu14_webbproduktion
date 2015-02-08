@@ -30,7 +30,7 @@ class ContentMachine extends PDOHelper {
     }
 
     public function getCategory() {
-        $sql ="SELECT category_id, title FROM categories LIMIT 4";
+        $sql ="SELECT * FROM categories";
         return $this->query($sql);
     }
 

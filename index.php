@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <script src="js/pushPop.js"></script>
         <script src="js/libs/jquery-2.1.3.js"></script>
         <script src="js/libs/bootstrap.js"></script>
         <script src="js/main.js"></script>
@@ -43,63 +44,98 @@
 
         <main class="container">
             <section class="row">
+  <div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Sidebar menu</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="buttonCategory"><a>Categories</a></li>
+            <li class="buttonPage"><a>Pages</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+</div>
                 <section class="mySidebar col-xs-10 col-sm-10 col-md-7 col-lg-7 col-xs-offset-1
                 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal adminFormular">
+                        <div class="homeAdmin adminMenuPage activeMenuPage">
+                        <h1>Welcome to the admin!</h1>
+                        <p>Start to choose something in the left...</p>
+                        </div>
 
-                        <h1>Admin page creator</h1>
-                        <div class="form-group addAs">
-                            <label class="col-sm-3 control-label"> Add as </label>
-                            <div class="col-sm-8">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button type="button" class="btn buttonCategory">Category</button>
-                                        <button type="button" class="btn buttonPage">Page</button>
-                                    </div>
+                        <div class="allcategories adminMenuPage">
+                            <h1>All categories</h1>
+                            <div class="form-group">
+                                <div class="col-sm-8 allCategoriesContainer">
+                                    <ul class="list-group">
+<!--                                         <li class="list-group-item">First item</li>
+                                        <li class="list-group-item">Second item</li>
+                                        <li class="list-group-item">Third item</li> -->
+                                    </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="addAsPage">
+                        <div class="editCategory adminMenuPage">
+                            <h1>Edit category</h1>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Title</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="Untitled">
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="addAsPage adminMenuPage">
+                            <h1>Create page</h1>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Title</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="titleValue" value="Untitled">
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"> Content </label>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control" id="contentValue" rows="7"></textarea>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> Content </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" id="contentValue" rows="7"></textarea>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Add to category: </label>
-                                <div class="col-sm-8">
-                                <select id="allCategories">
-                                </select>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Add to category: </label>
+                            <div class="col-sm-8">
+                            <select id="pageSelectCategory">
+                            </select>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label"> Register page </label>
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button type="submit" class="btn submitPage">Submit</button>
-                                            <button type="button" class="btn pageCancel">Cancel</button>
-                                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> Register page </label>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn submitPage">Add</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         </div>
 
-                        <div class="addAsCategory">
-
+                        <div class="addAsCategory adminMenuPage">
+                            <h1>Create category</h1>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Title</label>
                                 <div class="col-sm-8">
@@ -112,8 +148,7 @@
                                 <div class="col-sm-8">
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button type="button" class="btn submitCategory">Submit</button>
-                                            <button type="button" class="btn pageCancel">Cancel</button>
+                                            <button type="button" class="btn submitCategory">Add</button>
                                         </div>
                                     </div>
                                 </div>
