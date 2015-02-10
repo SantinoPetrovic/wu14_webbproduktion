@@ -47,6 +47,10 @@ button {
   }
 }
 
-.navbar-default .navbar-nav > li, .allCategoriesContainer .list-group > li {
+.navbar-default .navbar-nav > li, .allCategoriesContainer .list-group > li, .allPagesContainer .list-group > li{
     cursor: pointer;
+}
+
+.navbar-default .navbar-nav > li:hover, .allCategoriesContainer .list-group > li:hover {
+    background-color: #eee;
 }

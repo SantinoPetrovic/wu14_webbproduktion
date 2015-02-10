@@ -2,7 +2,7 @@ $(function(){
     // This function will always run directly when you go into the page.
     function loadThePage(){
 
-        // Empty everyrhing and hide the formular.
+        // Empty everything and hide the formular.
         $(".categoryContainer").html("");
         $("#allCategories").html("");
         $(".adminMenuPage").hide();
@@ -22,6 +22,11 @@ $(function(){
             }
         });
 
+        getPages(function (result) {
+            var pages = result;
+            console.log(pages);
+        });
+
     }
 
 // Returns all categories from DB by using AJAX.
@@ -29,6 +34,22 @@ $(function(){
         // AJAX request to get data from category and show it on nav and as options in the <select> element.
         $.ajax ({
             url: "php/getdataCategory.php",
+            type: "post",
+            dataType: "json",
+            success: function(data){
+                callback(data);
+            },
+            error: function(data){
+                console.log("get_category error: ", data);
+            }
+        });
+    }
+
+    // Returns all categories from DB by using AJAX.
+    function getPages(callback) {
+        // AJAX request to get data from category and show it on nav and as options in the <select> element.
+        $.ajax ({
+            url: "php/getdata.php",
             type: "post",
             dataType: "json",
             success: function(data){
@@ -59,6 +80,25 @@ $(function(){
         });
     }
 
+    function listPages() {
+        getPages(function (result) {
+            var pages = result;
+            console.log(pages);
+            $('.allPagesContainer .list-group .list-group-item').remove();
+            for(var i in pages){
+                $(".allPagesContainer .list-group").append(
+                    "<li class='list-group-item editPagesListItem' data-pagesID='" + pages[i].pages_id + "'>" + pages[i].title + "</li>"
+                );
+            }
+
+            $(".editPagesListItem").click(function(){
+                $(".adminMenuPage").slideUp(300);
+                $(".editPage").slideDown(300);
+                console.log($(".editCategory").length);
+            });
+        });
+    }
+
 
     // This function will search for pages by category_id.
     function getContentByCat(catId) {
@@ -83,11 +123,11 @@ $(function(){
             }
         });
     }
-// The first function begins here.
-    loadThePage();
 
 	$(".buttonPage").click(function(){
         $(".adminMenuPage").slideUp(300);
+        $(".allpages").slideDown(300);
+        listPages();
 	});
 
     $(".buttonCategory").click(function(){
@@ -96,8 +136,15 @@ $(function(){
         listCategories();
     });
 
-    console.log($(".allCategoriesContainer .list-group .list-group-item").val);
+    $(".newCategory").click(function(){
+        $(".allcategories").slideUp(300);
+        $(".addAsCategory").slideDown(300);
+    });
 
+    $(".newPage").click(function(){
+        $(".allPages").slideUp(300);
+        $(".addAsPage").slideDown(300);
+    });
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){
 		var insertContent = {
@@ -148,4 +195,6 @@ $(function(){
             });
         return false;
     });
+// The first function begins here.
+    loadThePage();
 });
