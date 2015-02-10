@@ -72,10 +72,12 @@ $(function(){
                 );
             }
 
-            $(".editCategoryListItem").click(function(){
+            $(".editCategoryListItem data-categoriesID='" + categories[i].category_id + "'").click(function(){
                 $(".adminMenuPage").slideUp(300);
                 $(".editCategory").slideDown(300);
-                console.log($(".editCategory").length);
+                $(".editCategoryField").prepend(
+                    "<label class='col-sm-3 control-label'>Title</label><div class='col-sm-8'><input type='text' class='form-control' value='"+ categories.title +"'></div>"
+                    );
             });
         });
     }
@@ -94,7 +96,7 @@ $(function(){
             $(".editPagesListItem").click(function(){
                 $(".adminMenuPage").slideUp(300);
                 $(".editPage").slideDown(300);
-                console.log($(".editCategory").length);
+                $(".editPageField").append("<p>hahagg</p>");
             });
         });
     }
