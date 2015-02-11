@@ -19,6 +19,9 @@ $(function(){
                 getContentByCat(categories[i].category_id);
                 $("#pageSelectCategory").append(
                     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>");
+                // console.log($("#pageSelectCategory").append(
+                //     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"));
+                console.log($("#pageSelectCategory option").attr('data-categoryID'));
             }
         });
 
@@ -71,14 +74,25 @@ $(function(){
                     "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
                 );
             }
+                // HÄR BÖRJAR FELET! behövs rätta till.
+    //":category_id" : $("option:selected").attr('data-categoryID')
+    $(".editCategoryListItem").click(function(){
 
-            $(".editCategoryListItem data-categoriesID='" + categories[i].category_id + "'").click(function(){
-                $(".adminMenuPage").slideUp(300);
-                $(".editCategory").slideDown(300);
-                $(".editCategoryField").prepend(
-                    "<label class='col-sm-3 control-label'>Title</label><div class='col-sm-8'><input type='text' class='form-control' value='"+ categories.title +"'></div>"
-                    );
-            });
+        $(".adminMenuPage").slideUp(300);
+        $(".editCategory").slideDown(300);
+        // console.log($(".editCategoryListItem").attr('data-categoriesID'));
+        // $.ajax ({
+        //     url: "php/editCategory.php",
+        //     type: "post",
+        //     dataType: "json",
+        //     data {
+
+        //     }
+        // });
+        // $(".editCategoryField").prepend(
+        //     "<label class='col-sm-3 control-label'>Title</label><div class='col-sm-8'><input type='text' class='form-control' value='Untitled'></div>"
+        //     );
+    });
         });
     }
 
@@ -147,6 +161,7 @@ $(function(){
         $(".allPages").slideUp(300);
         $(".addAsPage").slideDown(300);
     });
+
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){
 		var insertContent = {

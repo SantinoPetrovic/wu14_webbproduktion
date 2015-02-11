@@ -53,6 +53,11 @@ class ContentMachine extends PDOHelper {
         $this->query($sql, $insertCategory);
     }
 
+    public function deleteCategoryByCat(){
+        $sql = "DELETE FROM categories WHERE category_id = :category_id ";
+        $this->query($sql, $insertCategory);
+    }
+
 
 
 }
