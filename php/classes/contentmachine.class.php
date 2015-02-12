@@ -24,7 +24,7 @@ class ContentMachine extends PDOHelper {
         return $this->query($sql, $parameters);
     }
 
-    public function editContentByPag() {
+    public function getContentByPag() {
         $sql ="SELECT * FROM pages WHERE page_id = :page_id";
         return $this->query($sql);
     }
@@ -43,13 +43,19 @@ class ContentMachine extends PDOHelper {
         $sql ="SELECT * FROM categories";
         return $this->query($sql);
     }
-    public function editCategoryByCat() {
+    public function editCategoryByCat($category_id) {
         $sql ="SELECT * FROM categories WHERE category_id = :category_id";
-        return $this->query($sql);
+        $parameters = array(":category_id" => $category_id);
+        return $this->query($sql, $parameters);
     }
 
     public function saveEditedCategoryByCat($insertCategory) {
         $sql = "UPDATE categories SET title = :title WHERE category_id = :category_id ";
+        $this->query($sql, $insertCategory);
+    }
+
+    public function deleteCategoryByCat(){
+        $sql = "DELETE FROM categories WHERE category_id = :category_id ";
         $this->query($sql, $insertCategory);
     }
 

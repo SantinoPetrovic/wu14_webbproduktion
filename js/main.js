@@ -5,13 +5,13 @@ $(function(){
         // Empty everything and hide the formular.
         $(".categoryContainer").html("");
         $("#allCategories").html("");
-        $(".adminMenuPage").hide();
-        $(".homeAdmin").show();
+        $(".adminMenuPage").slideUp(300);
+        $(".homeAdmin").slideDown(300);
 
         getCategories(function (result) {
             var categories = result;
             console.log(categories);
-            for(var i in categories){
+            for(var i = 0; i < categories.length; i++){
                 $(".categoryContainer").append(
                     "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + categories[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' data-categoryID='" + categories[i].category_id + "'role='menu'></ul></li>"
                     );
@@ -19,7 +19,11 @@ $(function(){
                 getContentByCat(categories[i].category_id);
                 $("#pageSelectCategory").append(
                     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>");
+                // console.log($("#pageSelectCategory").append(
+                //     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"));
+                console.log($("#pageSelectCategory option"));
             }
+
         });
 
         getPages(function (result) {
@@ -72,13 +76,38 @@ $(function(){
                 );
             }
 
-            $(".editCategoryListItem data-categoriesID='" + categories[i].category_id + "'").click(function(){
+            // $(".editCategoryListItem").click(function() {
+            //     search for id
+            //     $(".editCategoryListItem[data-categoriesID='"+10+"]");
+            //     find out which id
+            //     console.log("I clicked cat: ", $(this).attr("data-categoriesID"));
+            // });
+
+            $(".editCategoryListItem").click(function(){
                 $(".adminMenuPage").slideUp(300);
                 $(".editCategory").slideDown(300);
-                $(".editCategoryField").prepend(
-                    "<label class='col-sm-3 control-label'>Title</label><div class='col-sm-8'><input type='text' class='form-control' value='"+ categories.title +"'></div>"
-                    );
+                $.ajax ({
+                    url: "php/getdataCategory.php",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "catID" : $(this).attr("data-categoriesID")
+                    },
+                    success: function(data){
+                        console.log("Edit category data: ", data);
+                        $(".editCategoryContainer").remove();
+                        $(".editCategoryField").prepend(
+                            "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' value='"+ data[0].title +"'></div>"
+                        );
+                    },
+                    error: function(data){
+                        console.log("get_category error: ", data);
+                    }
+                });
+
             });
+
+
         });
     }
 
@@ -116,9 +145,13 @@ $(function(){
                 // The function will loop through the data and display pages as a dropdown menu to categories.
                 // The page will append on screen IF the page and category have the same category_id.
                 for(var j = 0; j < data.length; j++){
-                    $(".categoryContainer ul[data-categoryID='"+catId+"']").append("<li><a href='"+data[j].page_id+"'>" + data[j].title + "</a></li>"
+                    $(".categoryContainer ul[data-categoryID='"+catId+"']").append("<li><a class='listPage' data-pagesID='"+ data[j].page_id +"' href='"+data[j].page_id+"'>" + data[j].title + "</a></li>"
                         );
                 }
+                // var pagId = {
+                //     pagID : $(".listPage").attr("data-pagesID")
+                // };
+                // console.log(pagId);
             },
             error: function(data){
                 console.log("get_page error: ", data);
@@ -144,9 +177,10 @@ $(function(){
     });
 
     $(".newPage").click(function(){
-        $(".allPages").slideUp(300);
+        $(".allpages").slideUp(300);
         $(".addAsPage").slideDown(300);
     });
+
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){
 		var insertContent = {
