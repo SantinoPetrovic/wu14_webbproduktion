@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script src="js/pushPop.js"></script>
         <script src="js/libs/jquery-2.1.3.js"></script>
         <script src="js/libs/bootstrap.js"></script>
         <script src="js/main.js"></script>

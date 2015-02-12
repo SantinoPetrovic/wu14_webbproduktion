@@ -21,7 +21,6 @@ $(function(){
                     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>");
                 // console.log($("#pageSelectCategory").append(
                 //     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"));
-                console.log($("#pageSelectCategory option"));
             }
 
         });
@@ -75,7 +74,8 @@ $(function(){
                     "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
                 );
             }
-
+                // HÄR BÖRJAR FELET! behövs rätta till.
+    //":category_id" : $("option:selected").attr('data-categoryID')
             // $(".editCategoryListItem").click(function() {
             //     search for id
             //     $(".editCategoryListItem[data-categoriesID='"+10+"]");
@@ -106,7 +106,6 @@ $(function(){
                 });
 
             });
-
 
         });
     }
