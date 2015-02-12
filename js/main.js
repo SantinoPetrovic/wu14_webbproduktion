@@ -18,11 +18,9 @@ $(function(){
                 // calling a function after the categories will be displayed on menu.
                 getContentByCat(categories[i].category_id);
                 $("#pageSelectCategory").append(
-                    "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>");
-                // console.log($("#pageSelectCategory").append(
-                //     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"));
+                    "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"
+                );
             }
-
         });
 
         getPages(function (result) {
@@ -69,7 +67,7 @@ $(function(){
             var categories = result;
             console.log(categories);
             $('.allCategoriesContainer .list-group .list-group-item').remove();
-            for(var i in categories){
+            for(var i = 0; i < categories.length; i++){
                 $(".allCategoriesContainer .list-group").append(
                     "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
                 );
@@ -88,8 +86,8 @@ $(function(){
                     },
                     success: function(data){
                         console.log("Edit category data: ", data);
-                        $(".editCategoryContainer").remove();
-                        $(".editCategoryField").prepend(
+                        $(".editCategoryField").empty();
+                        $(".editCategoryField").append(
                             "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' id='editedCategory' data-categoriesID='"+ data[0].category_id +"' value='"+ data[0].title +"'></div>"
                         );
                         // console.log("attr on this: ", $("#editedCategory").attr('data-categoriesID'));
@@ -108,16 +106,59 @@ $(function(){
             var pages = result;
             console.log(pages);
             $('.allPagesContainer .list-group .list-group-item').remove();
-            for(var i in pages){
+            for(var i = 0; i < pages.length; i++){
                 $(".allPagesContainer .list-group").append(
-                    "<li class='list-group-item editPagesListItem' data-pagesID='" + pages[i].pages_id + "'>" + pages[i].title + "</li>"
+                    "<li class='list-group-item editPagesListItem' data-pagesID='" + pages[i].page_id + "'>" + pages[i].title + "</li>"
                 );
             }
 
             $(".editPagesListItem").click(function(){
                 $(".adminMenuPage").slideUp(300);
                 $(".editPage").slideDown(300);
-                $(".editPageField").append("<p>hahagg</p>");
+
+                $.ajax ({
+                    url: "php/getdata.php",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "pagID" : $(this).attr("data-pagesID")
+                    },
+                    success: function(data){
+                        console.log("Edit page data: ", data);
+                        $(".editPageField").empty();
+                        $(".editPageField").append(
+                            "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
+                        );
+                        $(".editPageField").append(
+                            "<div class='form-group'><label class='col-sm-3 control-label'> Content </label><div class='col-sm-8'><textarea class='form-control' id='editContentValue' rows='7'>"+ data[0].content +"</textarea></div></div>"
+                        );
+
+                        $(".editPageField").append(
+                            "<div class='form-group'><label class='col-sm-3 control-label'>Add to category: </label><div class='col-sm-8'><select id='pageEditCategory'></select></div></div>"
+                        );
+
+                        $.ajax ({
+                            url: "php/getdataCategory.php",
+                            type: "post",
+                            dataType: "json",
+                            success: function(data){
+                                console.log("getdataCategory success: ", data);
+                                for(var i = 0; i < data.length; i++){
+                                    $("#pageEditCategory").append(
+                                        "<option data-categoryID='" + data[i].category_id + "'>" + data[i].title + "</option>"
+                                    );
+                                }
+                            },
+                            error: function(data){
+                                console.log("getdataCategory error: ", data);
+                            }
+                        });
+                    },
+                    error: function(data){
+                        console.log("get_category error: ", data);
+                    }
+                });
+
             });
         });
     }
@@ -137,7 +178,8 @@ $(function(){
                 // The function will loop through the data and display pages as a dropdown menu to categories.
                 // The page will append on screen IF the page and category have the same category_id.
                 for(var j = 0; j < data.length; j++){
-                    $(".categoryContainer ul[data-categoryID='"+catId+"']").append("<li><a class='listPage' data-pagesID='"+ data[j].page_id +"' href='"+data[j].page_id+"'>" + data[j].title + "</a></li>"
+                    $(".categoryContainer ul[data-categoryID='"+catId+"']").append(
+                        "<li><a class='listPage' data-pagesID='"+ data[j].page_id +"' href='"+data[j].page_id+"'>" + data[j].title + "</a></li>"
                         );
                 }
                 // var pagId = {

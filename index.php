@@ -101,11 +101,11 @@
                         <div class="editCategory adminMenuPage">
                             <h1>Edit category</h1>
                             <div class="form-group editCategoryField">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button type="button" class="btn btn-success saveCategory">Save</button>
-                                        <button type="button" class="btn btn-danger deleteCategory">Delete</button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-success saveCategory">Save</button>
+                                    <button type="button" class="btn btn-danger deleteCategory">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -113,15 +113,11 @@
                         <div class="editPage adminMenuPage">
                             <h1>Edit page</h1>
                             <div class="form-group editPageField">
-                                <label class="col-sm-3 control-label">Title</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="Untitled">
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <button type="button" class="btn btn-success savePage">Save</button>
-                                        <button type="button" class="btn btn-danger deletePage">Delete</button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-success savePage">Save</button>
+                                    <button type="button" class="btn btn-danger deletePage">Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -153,10 +149,8 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"> Register page </label>
                                 <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button type="button" class="btn btn-success submitPage">Add</button>
-                                        </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" class="btn btn-success submitPage">Add</button>
                                     </div>
                                 </div>
                             </div>
