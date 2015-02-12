@@ -5,3 +5,7 @@ if (isset($_REQUEST["insertCategory"])) {
 
     echo(json_encode($cq->saveCategory($_REQUEST["insertCategory"])));
 }
+else if (isset($_REQUEST["insertEditedCategory"])) {
+
+    echo(json_encode($cq->saveEditedCategoryByCat($_REQUEST["insertEditedCategory"])));
+}

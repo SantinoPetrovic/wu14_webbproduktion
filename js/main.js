@@ -5,8 +5,8 @@ $(function(){
         // Empty everything and hide the formular.
         $(".categoryContainer").html("");
         $("#allCategories").html("");
-        $(".adminMenuPage").slideUp(300);
-        $(".homeAdmin").slideDown(300);
+        $(".adminMenuPage").hide();
+        $(".homeAdmin").show();
 
         getCategories(function (result) {
             var categories = result;
@@ -74,18 +74,11 @@ $(function(){
                     "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
                 );
             }
-                // HÄR BÖRJAR FELET! behövs rätta till.
-    //":category_id" : $("option:selected").attr('data-categoryID')
-            // $(".editCategoryListItem").click(function() {
-            //     search for id
-            //     $(".editCategoryListItem[data-categoriesID='"+10+"]");
-            //     find out which id
-            //     console.log("I clicked cat: ", $(this).attr("data-categoriesID"));
-            // });
 
             $(".editCategoryListItem").click(function(){
                 $(".adminMenuPage").slideUp(300);
                 $(".editCategory").slideDown(300);
+
                 $.ajax ({
                     url: "php/getdataCategory.php",
                     type: "post",
@@ -97,8 +90,9 @@ $(function(){
                         console.log("Edit category data: ", data);
                         $(".editCategoryContainer").remove();
                         $(".editCategoryField").prepend(
-                            "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' value='"+ data[0].title +"'></div>"
+                            "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' id='editedCategory' data-categoriesID='"+ data[0].category_id +"' value='"+ data[0].title +"'></div>"
                         );
+                        // console.log("attr on this: ", $("#editedCategory").attr('data-categoriesID'));
                     },
                     error: function(data){
                         console.log("get_category error: ", data);
@@ -106,7 +100,6 @@ $(function(){
                 });
 
             });
-
         });
     }
 
@@ -229,6 +222,30 @@ $(function(){
             }
             });
         return false;
+    });
+
+    $(".saveCategory").click(function(){
+        var insertEditedCategory = {
+            ":title" : $("#editedCategory").val(),
+            ":category_id" : $("#editedCategory").attr('data-categoriesID')
+        };
+        console.log(insertEditedCategory);
+        $.ajax({
+            url: "php/savedataCategory.php",
+            type: "post",
+            dataType: "json",
+            data: {
+                "insertEditedCategory" : insertEditedCategory
+            },
+            success: function(data){
+                alert('Category saved!');
+                console.log("store_category success: ", data);
+                loadThePage();
+            },
+            error: function(data){
+                console.log("store_category error: ", data);
+            }
+            });
     });
 // The first function begins here.
     loadThePage();

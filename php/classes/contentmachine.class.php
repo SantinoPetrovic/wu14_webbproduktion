@@ -7,10 +7,8 @@ class ContentMachine extends PDOHelper {
 
     public function saveContent($insertContent) {
         // $insertContent[":user_id"] = $this->user_info["user_id"];
-
         $sql = "INSERT INTO pages (title, content, category_id) VALUES (:title, :content, :category_id)";
         $this->query($sql, $insertContent);
-        return true;
     }
 
     public function getContent() {
@@ -49,9 +47,9 @@ class ContentMachine extends PDOHelper {
         return $this->query($sql, $parameters);
     }
 
-    public function saveEditedCategoryByCat($insertCategory) {
-        $sql = "UPDATE categories SET title = :title WHERE category_id = :category_id ";
-        $this->query($sql, $insertCategory);
+    public function saveEditedCategoryByCat($insertEditedCategory) {
+        $sql = "UPDATE categories SET title = (:title) WHERE category_id = :category_id ";
+        $this->query($sql, $insertEditedCategory);
     }
 
     public function deleteCategoryByCat(){
