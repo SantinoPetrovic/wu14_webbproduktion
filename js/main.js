@@ -127,7 +127,7 @@ $(function(){
                         console.log("Edit page data: ", data);
                         $(".editPageField").empty();
                         $(".editPageField").append(
-                            "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
+                            "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
                         );
                         $(".editPageField").append(
                             "<div class='form-group'><label class='col-sm-3 control-label'> Content </label><div class='col-sm-8'><textarea class='form-control' id='editContentValue' rows='7'>"+ data[0].content +"</textarea></div></div>"
@@ -142,6 +142,7 @@ $(function(){
                             type: "post",
                             dataType: "json",
                             success: function(data){
+                                // $("#pageEditCategory").empty();
                                 console.log("getdataCategory success: ", data);
                                 for(var i = 0; i < data.length; i++){
                                     $("#pageEditCategory").append(
@@ -220,7 +221,7 @@ $(function(){
 		var insertContent = {
 			":title" : $("#titleValue").val(),
 			":content" : $("#contentValue").val(),
-            ":category_id" : $("option:selected").attr('data-categoryID')
+            ":category_id" : $("#pageSelectCategory option:selected").attr('data-categoryID')
 		};
 		$.ajax({
 			url: "php/savedata.php",
@@ -233,6 +234,7 @@ $(function(){
                 alert('Page saved!');
 				console.log("store_content success: ", data);
                 console.log($("option:selected").val());
+                $("#pageSelectCategory").empty();
                 loadThePage();
 			},
 			error: function(data){
@@ -278,6 +280,33 @@ $(function(){
             dataType: "json",
             data: {
                 "insertEditedCategory" : insertEditedCategory
+            },
+            success: function(data){
+                alert('Category saved!');
+                console.log("store_category success: ", data);
+                loadThePage();
+            },
+            error: function(data){
+                console.log("store_category error: ", data);
+            }
+            });
+    });
+
+
+    $(".savePage").click(function(){
+        var insertEditedPage = {
+            ":title" : $("#editedPage").val(),
+            ":content" : $("#editContentValue").val(),
+            ":category_id" : $("#pageEditCategory option:selected").attr('data-categoryID'),
+            ":page_id" : $("#dataPage").attr('data-pagesID')
+        };
+        console.log(insertEditedPage);
+        $.ajax({
+            url: "php/savedata.php",
+            type: "post",
+            dataType: "json",
+            data: {
+                "insertEditedPage" : insertEditedPage
             },
             success: function(data){
                 alert('Category saved!');

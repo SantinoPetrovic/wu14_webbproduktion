@@ -22,9 +22,9 @@ class ContentMachine extends PDOHelper {
         return $this->query($sql, $parameters);
     }
 
-    public function saveEditedPageByPag($insertCategory) {
-        $sql = "UPDATE pages SET title = :title, content = :content, category_id = :category_id WHERE page_id = :page_id ";
-        $this->query($sql, $insertCategory);
+    public function saveEditedPageByPag($insertEditedPage) {
+        $sql = "UPDATE pages SET title = (:title), content = (:content), category_id = (:category_id) WHERE page_id = :page_id ";
+        $this->query($sql, $insertEditedPage);
     }
 
     public function saveCategory($insertCategory) {
