@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: localhost
--- Skapad: 03 feb 2015 kl 16:33
+-- Skapad: 13 feb 2015 kl 13:38
 -- Serverversion: 5.6.19-0ubuntu0.14.04.1
 -- PHP-version: 5.5.9-1ubuntu4.3
 
@@ -31,7 +31,39 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `title` varchar(255) NOT NULL,
   `content` text,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumpning av Data i tabell `categories`
+--
+
+INSERT INTO `categories` (`category_id`, `title`, `content`) VALUES
+(9, 'f', NULL),
+(10, ':title', NULL),
+(13, ':title', NULL),
+(14, ':title', NULL),
+(15, ':title', NULL),
+(16, ':title', NULL),
+(17, ':title', NULL),
+(18, 'yo', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `footer`
+--
+
+CREATE TABLE IF NOT EXISTS `footer` (
+  `phone_number` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumpning av Data i tabell `footer`
+--
+
+INSERT INTO `footer` (`phone_number`, `street`) VALUES
+('0123-0123', 'streetyay123');
 
 -- --------------------------------------------------------
 
@@ -46,7 +78,19 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`page_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumpning av Data i tabell `pages`
+--
+
+INSERT INTO `pages` (`title`, `content`, `page_id`, `category_id`) VALUES
+('A page', 'this should have category_id 10.', 10, 10),
+('Lolek', 'dada', 15, 16),
+('D page', '', 17, 13),
+('hI', '', 18, 9),
+('Lol', 'dasadsadsads', 19, 9),
+('Hej', 'lol', 20, 14);
 
 --
 -- Restriktioner för dumpade tabeller
