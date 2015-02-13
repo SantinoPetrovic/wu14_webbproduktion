@@ -332,12 +332,35 @@ $(function(){
                 "deleteCategory" : deleteCategory
             },
             success: function(data){
-                alert('Category deleted!');
-                console.log("store_category success: ", data);
+                alert('Category deleted with its content!');
+                console.log("delete category success: ", data);
                 loadThePage();
             },
             error: function(data){
-                console.log("store_category error: ", data);
+                console.log("delete category error: ", data);
+            }
+        });
+    });
+
+    $(".deletePage").click(function(){
+        var deletePage = {
+            ":page_id" : $("#dataPage").attr('data-pagesID')
+        }
+        console.log(deletePage);
+        $.ajax({
+            url: "php/deletedata.php",
+            type: "post",
+            dataType: "json",
+            data: {
+                "deletePage" : deletePage
+            },
+            success: function(data){
+                alert('Page deleted!');
+                console.log("delete page success: ", data);
+                loadThePage();
+            },
+            error: function(data){
+                console.log("delete page error: ", data);
             }
         });
     });

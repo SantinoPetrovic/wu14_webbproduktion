@@ -58,6 +58,11 @@ class ContentMachine extends PDOHelper {
         $this->query($sql, $deleteCategory);
     }
 
+    public function deletePageByPag($deletePage){
+        $sql = "DELETE FROM pages WHERE page_id = :page_id ";
+        $this->query($sql, $deletePage);
+    }
+
 
 
 }
