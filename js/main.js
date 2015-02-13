@@ -7,7 +7,6 @@ $(function(){
         $("#allCategories").html("");
         $(".adminMenuPage").hide();
         $(".homeAdmin").show();
-
         getCategories(function (result) {
             var categories = result;
             console.log(categories);
@@ -28,6 +27,17 @@ $(function(){
             console.log(pages);
         });
 
+        $.ajax ({
+            url: "php/getFooter.php",
+            type: "post",
+            dataType: "json",
+            success: function(data){
+                console.log("footer success: ", data);
+            },
+            error: function(data){
+                console.log("footer error: ", data);
+            }
+        });
     }
 
 // Returns all categories from DB by using AJAX.

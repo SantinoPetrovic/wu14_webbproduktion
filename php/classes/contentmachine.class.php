@@ -31,6 +31,12 @@ class ContentMachine extends PDOHelper {
         $sql ="SELECT * FROM categories";
         return $this->query($sql);
     }
+
+    public function getFooter() {
+        $sql ="SELECT * FROM footer";
+        return $this->query($sql);
+    }
+
     public function editCategoryByCat($category_id) {
         $sql ="SELECT * FROM categories WHERE category_id = :category_id";
         $parameters = array(":category_id" => $category_id);
