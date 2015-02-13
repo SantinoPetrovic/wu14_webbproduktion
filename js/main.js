@@ -316,7 +316,30 @@ $(function(){
             error: function(data){
                 console.log("store_category error: ", data);
             }
-            });
+        });
+    });
+
+    $(".deleteCategory").click(function(){
+        var deleteCategory = {
+            ":category_id" : $("#editedCategory").attr('data-categoriesID')
+        }
+        console.log(deleteCategory);
+        $.ajax({
+            url: "php/deleteCategory.php",
+            type: "post",
+            dataType: "json",
+            data: {
+                "deleteCategory" : deleteCategory
+            },
+            success: function(data){
+                alert('Category deleted!');
+                console.log("store_category success: ", data);
+                loadThePage();
+            },
+            error: function(data){
+                console.log("store_category error: ", data);
+            }
+        });
     });
 // The first function begins here.
     loadThePage();
