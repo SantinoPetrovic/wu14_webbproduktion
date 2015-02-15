@@ -7,8 +7,13 @@ $(function(){
         $("#allCategories").html("");
         $(".adminMenuPage").hide();
         $(".homeAdmin").show();
-        getCategories(function (result) {
-            var categories = result;
+
+        $.ajax ({
+            url: "php/getdataCategory.php",
+            type: "post",
+            dataType: "json",
+            success: function(data){
+            var categories = data;
             console.log(categories);
             for(var i = 0; i < categories.length; i++){
                 $(".categoryContainer").append(
@@ -26,11 +31,10 @@ $(function(){
                 );
             }
             getContentByPag();
-        });
-
-        getPages(function (result) {
-            var pages = result;
-            //console.log(pages);
+            },
+            error: function(data){
+                console.log("get_category error: ", data);
+            }
         });
 
         $.ajax ({
@@ -50,15 +54,46 @@ $(function(){
         });
     }
 
-// Returns all categories from DB by using AJAX.
-    function getCategories(callback) {
-        // AJAX request to get data from category and show it on nav and as options in the <select> element.
+
+    function listCategories() {
         $.ajax ({
             url: "php/getdataCategory.php",
             type: "post",
             dataType: "json",
             success: function(data){
-                callback(data);
+                var categories = data;
+                //console.log(categories);
+                $('.allCategoriesContainer .list-group .list-group-item').remove();
+                for(var i = 0; i < categories.length; i++){
+                    $(".allCategoriesContainer .list-group").append(
+                        "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
+                    );
+                }
+
+                $(".editCategoryListItem").click(function(){
+                    $(".adminMenuPage").slideUp(300);
+                    $(".editCategory").slideDown(300);
+
+                    $.ajax ({
+                        url: "php/getdataCategory.php",
+                        type: "post",
+                        dataType: "json",
+                        data: {
+                            "catID" : $(this).attr("data-categoriesID")
+                        },
+                        success: function(data){
+                            console.log("Edit category data: ", data);
+                            $(".editCategoryField").empty();
+                            $(".editCategoryField").append(
+                                "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' id='editedCategory' data-categoriesID='"+ data[0].category_id +"' value='"+ data[0].title +"'></div>"
+                            );
+                            // console.log("attr on this: ", $("#editedCategory").attr('data-categoriesID'));
+                        },
+                        error: function(data){
+                            console.log("get_category error: ", data);
+                        }
+                    });
+                });
             },
             error: function(data){
                 console.log("get_category error: ", data);
@@ -66,64 +101,13 @@ $(function(){
         });
     }
 
-    // Returns all categories from DB by using AJAX.
-    function getPages(callback) {
-        // AJAX request to get data from category and show it on nav and as options in the <select> element.
+    function listPages() {
         $.ajax ({
             url: "php/getdata.php",
             type: "post",
             dataType: "json",
             success: function(data){
-                callback(data);
-            },
-            error: function(data){
-                console.log("get_category error: ", data);
-            }
-        });
-    }
-
-    function listCategories() {
-        getCategories(function (result) {
-            var categories = result;
-            //console.log(categories);
-            $('.allCategoriesContainer .list-group .list-group-item').remove();
-            for(var i = 0; i < categories.length; i++){
-                $(".allCategoriesContainer .list-group").append(
-                    "<li class='list-group-item editCategoryListItem' data-categoriesID='" + categories[i].category_id + "'>" + categories[i].title + "</li>"
-                );
-            }
-
-            $(".editCategoryListItem").click(function(){
-                $(".adminMenuPage").slideUp(300);
-                $(".editCategory").slideDown(300);
-
-                $.ajax ({
-                    url: "php/getdataCategory.php",
-                    type: "post",
-                    dataType: "json",
-                    data: {
-                        "catID" : $(this).attr("data-categoriesID")
-                    },
-                    success: function(data){
-                        console.log("Edit category data: ", data);
-                        $(".editCategoryField").empty();
-                        $(".editCategoryField").append(
-                            "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' id='editedCategory' data-categoriesID='"+ data[0].category_id +"' value='"+ data[0].title +"'></div>"
-                        );
-                        // console.log("attr on this: ", $("#editedCategory").attr('data-categoriesID'));
-                    },
-                    error: function(data){
-                        console.log("get_category error: ", data);
-                    }
-                });
-
-            });
-        });
-    }
-
-    function listPages() {
-        getPages(function (result) {
-            var pages = result;
+            var pages = data;
             //console.log(pages);
             $('.allPagesContainer .list-group .list-group-item').remove();
             for(var i = 0; i < pages.length; i++){
@@ -181,36 +165,12 @@ $(function(){
                 });
 
             });
-        });
-    }
-
-
-    // This function will search for pages by category_id.
-    function getContentByCat(catId) {
-        $.ajax ({
-            url: "php/getdata.php",
-            type: "post",
-            dataType: "json",
-            data: {
-                "catId": catId
-            },
-            success: function(data){
-                //console.log("get_page by cat success: ", data);
-                // The function will loop through the data and display pages as a dropdown menu to categories.
-                // The page will append on screen IF the page and category have the same category_id.
-
-                getContentByPag();
-                // var pagId = {
-                //     pagID : $(".listPage").attr("data-pagesID")
-                // };
-                // console.log(pagId);
             },
             error: function(data){
-                console.log("get_page error: ", data);
+                console.log("get_category error: ", data);
             }
         });
     }
-    //console.log("lolek",$(".dropdown").length);
 
 	$(".buttonPage").click(function(){
         $(".adminMenuPage").slideUp(300);
