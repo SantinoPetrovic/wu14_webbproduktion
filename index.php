@@ -43,7 +43,7 @@
 
         <main class="container">
             <section class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="sidebar-nav">
                         <div class="navbar navbar-default" role="navigation">
                             <div class="navbar-header">
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <section class="mySidebar col-xs-10 col-sm-10 col-md-7 col-lg-7 col-xs-offset-1
+                <section class="mySidebar col-xs-10 col-sm-10 col-md-10 col-lg-7 col-xs-offset-1
                 col-sm-offset-1">
                     <form class="form-horizontal adminFormular">
                         <div class="homeAdmin adminMenuPage activeMenuPage">
@@ -181,7 +181,12 @@
                 </section>
             </section>
         </main>
+
         <footer>
+            <h2 class="contactUs">Contact us: </h2>
+            <div class="informationContainer">
+            </div>
         </footer>
+
     </body>
 </html>

@@ -5,7 +5,7 @@ if (isset($_REQUEST["catId"])) {
 	echo(json_encode($cq->getContentByCat($_REQUEST["catId"])));
 }
 else if(isset($_REQUEST["pagID"])) {
-	echo(json_encode($cq->editContentByPag($_REQUEST["pagID"])));
+	echo(json_encode($cq->getContentByPag($_REQUEST["pagID"])));
 }
  else {
 	echo(json_encode($cq->getContent()));

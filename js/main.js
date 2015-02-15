@@ -24,7 +24,7 @@ $(function(){
 
         getPages(function (result) {
             var pages = result;
-            console.log(pages);
+            //console.log(pages);
         });
 
         $.ajax ({
@@ -32,7 +32,11 @@ $(function(){
             type: "post",
             dataType: "json",
             success: function(data){
-                console.log("footer success: ", data);
+                $(".allInformation").empty();
+                //console.log("footer success: ", data);
+                $(".informationContainer").append(
+                    "<p class='allInformation'><strong>Adress:</strong> "+ data[0].street + "</p>  <p class='allInformation'> Phone-number: "+ data[0].phone_number +"</p> "
+                    );
             },
             error: function(data){
                 console.log("footer error: ", data);
@@ -75,7 +79,7 @@ $(function(){
     function listCategories() {
         getCategories(function (result) {
             var categories = result;
-            console.log(categories);
+            //console.log(categories);
             $('.allCategoriesContainer .list-group .list-group-item').remove();
             for(var i = 0; i < categories.length; i++){
                 $(".allCategoriesContainer .list-group").append(
@@ -114,7 +118,7 @@ $(function(){
     function listPages() {
         getPages(function (result) {
             var pages = result;
-            console.log(pages);
+            //console.log(pages);
             $('.allPagesContainer .list-group .list-group-item').remove();
             for(var i = 0; i < pages.length; i++){
                 $(".allPagesContainer .list-group").append(
@@ -134,7 +138,7 @@ $(function(){
                         "pagID" : $(this).attr("data-pagesID")
                     },
                     success: function(data){
-                        console.log("Edit page data: ", data);
+                        //console.log("Edit page data: ", data);
                         $(".editPageField").empty();
                         $(".editPageField").append(
                             "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
@@ -185,14 +189,15 @@ $(function(){
                 "catId": catId
             },
             success: function(data){
-                console.log("get_page by cat success: ", data);
+                //console.log("get_page by cat success: ", data);
                 // The function will loop through the data and display pages as a dropdown menu to categories.
                 // The page will append on screen IF the page and category have the same category_id.
-                for(var j = 0; j < data.length; j++){
+                for(var i = 0; i < data.length; i++){
                     $(".categoryContainer ul[data-categoryID='"+catId+"']").append(
-                        "<li><a class='listPage' data-pagesID='"+ data[j].page_id +"' href='"+data[j].page_id+"'>" + data[j].title + "</a></li>"
+                        "<li><a class='listDatPage' data-pagesID='"+ data[i].page_id +"' href='#'>" + data[i].title + "</a></li>"
                         );
                 }
+                getContentByPag();
                 // var pagId = {
                 //     pagID : $(".listPage").attr("data-pagesID")
                 // };
@@ -203,12 +208,21 @@ $(function(){
             }
         });
     }
+    //console.log("lolek",$(".dropdown").length);
 
 	$(".buttonPage").click(function(){
         $(".adminMenuPage").slideUp(300);
         $(".allpages").slideDown(300);
         listPages();
 	});
+
+    function getContentByPag(){
+        $(".listDatPage").click(function(){
+            console.log("HEJHEJ");
+        $(".adminMenuPage").slideUp(300);
+        $(".allcategories").slideDown(300);
+        });
+    }
 
     $(".buttonCategory").click(function(){
         $(".adminMenuPage").slideUp(300);

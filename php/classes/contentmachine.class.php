@@ -43,7 +43,7 @@ class ContentMachine extends PDOHelper {
         return $this->query($sql, $parameters);
     }
 
-    public function editContentByPag($page_id) {
+    public function getContentByPag($page_id) {
         $sql ="SELECT * FROM pages WHERE page_id = :page_id";
         $parameters = array(":page_id" => $page_id);
         return $this->query($sql, $parameters);
