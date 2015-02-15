@@ -6,5 +6,13 @@ if (isset($_REQUEST["catID"])) {
     echo(json_encode($cq->editCategoryByCat($_REQUEST["catID"])));
 }
 else{
-echo(json_encode($cq->getCategory()));
+    // Get all categories.
+    $categories = $cq->getCategory();
+
+    // Loop through each category and get their pages.
+    foreach ($categories as &$category) {
+        $pages = $cq->getCategoryPages($category['category_id']);
+        $category['pages'] = $pages;
+    }
+    echo(json_encode($categories));
 }

@@ -15,11 +15,17 @@ $(function(){
                     "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + categories[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' data-categoryID='" + categories[i].category_id + "'role='menu'></ul></li>"
                     );
                 // calling a function after the categories will be displayed on menu.
-                getContentByCat(categories[i].category_id);
+                var pages = categories[i].pages;
+                for(var j = 0; j < pages.length; j++){
+                    $(".categoryContainer ul[data-categoryID='"+categories[i].category_id+"']").append(
+                        "<li><a class='listDatPage' data-pagesID='"+ pages[j].page_id +"' href='#'>" + pages[j].title + "</a></li>"
+                        );
+                }
                 $("#pageSelectCategory").append(
                     "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"
                 );
             }
+            getContentByPag();
         });
 
         getPages(function (result) {
@@ -192,11 +198,7 @@ $(function(){
                 //console.log("get_page by cat success: ", data);
                 // The function will loop through the data and display pages as a dropdown menu to categories.
                 // The page will append on screen IF the page and category have the same category_id.
-                for(var i = 0; i < data.length; i++){
-                    $(".categoryContainer ul[data-categoryID='"+catId+"']").append(
-                        "<li><a class='listDatPage' data-pagesID='"+ data[i].page_id +"' href='#'>" + data[i].title + "</a></li>"
-                        );
-                }
+
                 getContentByPag();
                 // var pagId = {
                 //     pagID : $(".listPage").attr("data-pagesID")

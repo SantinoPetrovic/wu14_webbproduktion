@@ -8,5 +8,5 @@ else if(isset($_REQUEST["pagID"])) {
 	echo(json_encode($cq->getContentByPag($_REQUEST["pagID"])));
 }
  else {
-	echo(json_encode($cq->getContent()));
+	echo(json_encode($cq->getPages()));
 }
