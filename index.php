@@ -72,6 +72,9 @@
                         <p>Start to choose something in the sidebar menu...</p>
                         </div>
 
+                        <div class="openPage adminMenuPage">
+                        </div>
+
                         <div class="allcategories adminMenuPage">
                             <h1>All categories</h1>
                             <div class="form-group">

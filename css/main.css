@@ -21,7 +21,6 @@ main {
     border: 2px solid black;
     border-radius: 10px;
     background-color: #E5E5E5;
- /*   position: relative;*/
 
 }
 
@@ -79,4 +78,8 @@ footer {
 .allInformation {
     margin: 10px 0 0 40px;
     font-weight: bold;
+}
+
+.openPageContent {
+    margin-bottom: 20px;
 }

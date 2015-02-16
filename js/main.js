@@ -180,12 +180,30 @@ $(function(){
 
     function getContentByPag(){
         $(".listDatPage").click(function(){
-            console.log("HEJHEJ");
-        $(".adminMenuPage").slideUp(300);
-        $(".allcategories").slideDown(300);
+            $(".adminMenuPage").slideUp(300);
+            $(".openPage").slideDown(300);
+            $(".openPage").empty();
+
+            $.ajax ({
+                url: "php/getdata.php",
+                type: "post",
+                dataType: "json",
+                data: {
+                    "pagID" : $(this).attr("data-pagesID")
+                },
+                success: function(data){
+                    console.log("load page success: ", data);
+                    $(".openPage").append("<h1 class='openPageTitle'>"+ data[0].title +"</h1>");
+                    $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
+                },
+                error: function(data){
+                    console.log("load page error: ", data);
+                }
+            });
+                
         });
     }
-
+                        
     $(".buttonCategory").click(function(){
         $(".adminMenuPage").slideUp(300);
         $(".allcategories").slideDown(300);
@@ -308,7 +326,7 @@ $(function(){
     $(".deleteCategory").click(function(){
         var deleteCategory = {
             ":category_id" : $("#editedCategory").attr('data-categoriesID')
-        }
+        };
         console.log(deleteCategory);
         $.ajax({
             url: "php/deleteCategory.php",
@@ -331,7 +349,7 @@ $(function(){
     $(".deletePage").click(function(){
         var deletePage = {
             ":page_id" : $("#dataPage").attr('data-pagesID')
-        }
+        };
         console.log(deletePage);
         $.ajax({
             url: "php/deletedata.php",
