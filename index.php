@@ -5,6 +5,7 @@
         <script src="js/libs/jquery-2.1.3.js"></script>
         <script src="js/libs/bootstrap.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/pushPop.js"></script>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" href="css-libs/meyer-reset.css">
         <link rel="stylesheet" href="css/main.css">
@@ -18,11 +19,9 @@
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
+                                <span class="glyphicon glyphicon-list"></span>
                             </button>
-                            <a class="navbar-brand" href="#">
+                            <a class="navbar-brand" href="home">
                                 <img alt="Brand" src="imgs/game_icon.jpg">
                             </a>
                         </div>
@@ -49,9 +48,7 @@
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
                                     <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
+                                    <span class="glyphicon glyphicon-list"></span>
                                 </button>
                                 <span class="visible-xs navbar-brand">Sidebar menu</span>
                             </div>
@@ -131,6 +128,13 @@
                                 <label class="col-sm-3 control-label">Title</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" id="titleValue" value="Untitled">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Section</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="sectionValue">
                                 </div>
                             </div>
 

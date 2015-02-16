@@ -134,9 +134,11 @@ $(function(){
                             "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
                         );
                         $(".editPageField").append(
+                            "<div class='form-group'><label class='col-sm-3 control-label'>Section</label><div class='col-sm-8'><input type='text' class='form-control' id='editSectionValue' value='"+ data[0].section +"'></div></div>"
+                        );
+                        $(".editPageField").append(
                             "<div class='form-group'><label class='col-sm-3 control-label'> Content </label><div class='col-sm-8'><textarea class='form-control' id='editContentValue' rows='7'>"+ data[0].content +"</textarea></div></div>"
                         );
-
                         $(".editPageField").append(
                             "<div class='form-group'><label class='col-sm-3 control-label'>Add to category: </label><div class='col-sm-8'><select id='pageEditCategory'></select></div></div>"
                         );
@@ -193,7 +195,7 @@ $(function(){
                 },
                 success: function(data){
                     console.log("load page success: ", data);
-                    $(".openPage").append("<h1 class='openPageTitle'>"+ data[0].title +"</h1>");
+                    $(".openPage").append("<h1 class='openPageSection'>"+ data[0].section +"</h1>");
                     $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
                 },
                 error: function(data){
@@ -224,6 +226,7 @@ $(function(){
 	$(".submitPage").click(function(){
 		var insertContent = {
 			":title" : $("#titleValue").val(),
+            ":section" : $("#sectionValue").val(),
 			":content" : $("#contentValue").val(),
             ":category_id" : $("#pageSelectCategory option:selected").attr('data-categoryID')
 		};
@@ -300,6 +303,7 @@ $(function(){
     $(".savePage").click(function(){
         var insertEditedPage = {
             ":title" : $("#editedPage").val(),
+            ":section" : $("#editSectionValue").val(),
             ":content" : $("#editContentValue").val(),
             ":category_id" : $("#pageEditCategory option:selected").attr('data-categoryID'),
             ":page_id" : $("#dataPage").attr('data-pagesID')
