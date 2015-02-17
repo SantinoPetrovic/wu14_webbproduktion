@@ -8,7 +8,15 @@
 
 //function to show/hide sections
 function showPage(pageUrl) {
+  console.log("pageUrl: ", pageUrl);
+  if (pageUrl == "home") {
 
+  } else {
+    getContentByPag(pageUrl);
+
+  }
+  // The first function begins here.
+  loadThePage();
 }
 
 
