@@ -1,12 +1,6 @@
 // This function will always run directly when you go into the page.
 function loadThePage(){
-
-    // Empty everything and hide the formular.
-    $(".categoryContainer").html("");
-    $("#allCategories").html("");
-    $(".adminMenuPage").hide();
-    $(".homeAdmin").show();
-
+    $(".categoryContainer").empty();
     $.ajax ({
         url: "php/getdataCategory.php",
         type: "post",
@@ -29,7 +23,7 @@ function loadThePage(){
                 "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"
             );
         }
-        getContentByPag();
+        // getContentByPag();
         },
         error: function(data){
             console.log("get_category error: ", data);
@@ -53,6 +47,12 @@ function loadThePage(){
     });
 }
 
+function reloadTheHeader() {
+    // Empty everything and hide the formular.
+    $(".allCategories").empty();
+    $(".allPages").empty();
+    $(".adminMenuPage").hide();
+}
 
 function listCategories() {
     $.ajax ({
@@ -173,10 +173,10 @@ function listPages() {
     });
 }
 
-function getContentByPag(pagesID){
+function getContentByPag(){
     $(".listDatPage").click(function(){
-        $(".adminMenuPage").slideUp(300);
-        $(".openPage").slideDown(300);
+        // $(".adminMenuPage").slideUp(300);
+        // $(".openPage").slideDown(300);
         $(".openPage").empty();
 
         $.ajax ({
@@ -184,7 +184,7 @@ function getContentByPag(pagesID){
             type: "post",
             dataType: "json",
             data: {
-                "pagID" : pagesID
+                "pagID" : $(this).attr("data-pagesID")
             },
             success: function(data){
                 console.log("load page success: ", data);

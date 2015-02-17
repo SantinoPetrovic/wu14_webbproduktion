@@ -3,17 +3,13 @@ $(function(){
 
 
 	$(".buttonPage").click(function(){
-        $(".adminMenuPage").slideUp(300);
-        $(".allpages").slideDown(300);
-        listPages();
+        // reloadTheHeader();      
 	});
 
 
 
     $(".buttonCategory").click(function(){
-        $(".adminMenuPage").slideUp(300);
-        $(".allcategories").slideDown(300);
-        listCategories();
+        // reloadTheHeader();
     });
 
     $(".newCategory").click(function(){
@@ -46,7 +42,9 @@ $(function(){
 				console.log("store_content success: ", data);
                 console.log($("option:selected").val());
                 $("#pageSelectCategory").empty();
+                reloadTheHeader();
                 loadThePage();
+                
 			},
 			error: function(data){
 				console.log("store_content error: ", data);
@@ -71,6 +69,7 @@ $(function(){
                 alert('Category saved!');
                 console.log("store_category success: ", data);
                 loadThePage();
+                reloadTheHeader();
             },
             error: function(data){
                 console.log("store_category error: ", data);
@@ -96,6 +95,7 @@ $(function(){
                 alert('Category saved!');
                 console.log("store_category success: ", data);
                 loadThePage();
+                reloadTheHeader();
             },
             error: function(data){
                 console.log("store_category error: ", data);
@@ -124,6 +124,7 @@ $(function(){
                 alert('Page saved!');
                 console.log("store_category success: ", data);
                 loadThePage();
+                reloadTheHeader();
             },
             error: function(data){
                 console.log("store_category error: ", data);
@@ -148,6 +149,7 @@ $(function(){
                 alert('Category deleted with its content!');
                 console.log("delete category success: ", data);
                 loadThePage();
+                reloadTheHeader();
             },
             error: function(data){
                 console.log("delete category error: ", data);
@@ -173,6 +175,7 @@ $(function(){
                 alert('Page deleted!');
                 console.log("delete page success: ", data);
                 loadThePage();
+                reloadTheHeader();
             },
             error: function(data){
                 console.log("delete page error: ", data);

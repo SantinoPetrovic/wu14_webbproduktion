@@ -8,15 +8,32 @@
 
 //function to show/hide sections
 function showPage(pageUrl) {
+
+
+
+
+
+
+
+    loadThePage();
+    reloadTheHeader();
   console.log("pageUrl: ", pageUrl);
-  if (pageUrl == "home") {
-
-  } else {
-    getContentByPag(pageUrl);
-
+  if(pageUrl == "categories"){
+    $(".adminMenuPage").slideUp(300);
+    listCategories();
+            
+        $(".allcategories").slideDown(300);
   }
-  // The first function begins here.
-  loadThePage();
+  else if(pageUrl == "pages"){
+    listPages();
+    $(".adminMenuPage").slideUp(300);
+    $(".allpages").slideDown(300);
+  }
+  else if(!isNaN(pageUrl)){
+    $(".adminMenuPage").slideUp(300);
+    $(".openPage").slideDown(300);
+    getContentByPag();
+  }
 }
 
 
