@@ -1,6 +1,6 @@
 // This function will always run directly when you go into the page.
 function loadThePage(){
-    $(".categoryContainer").empty();
+    $(".categoryContainer").html("");
     $.ajax ({
         url: "php/getdataCategory.php",
         type: "post",
@@ -23,7 +23,6 @@ function loadThePage(){
                 "<option data-categoryID='" + categories[i].category_id + "'>" + categories[i].title + "</option>"
             );
         }
-        // getContentByPag();
         },
         error: function(data){
             console.log("get_category error: ", data);
@@ -174,27 +173,28 @@ function listPages() {
 }
 
 function getContentByPag(){
+    console.log("does this work?");
     $(".listDatPage").click(function(){
         // $(".adminMenuPage").slideUp(300);
         // $(".openPage").slideDown(300);
-        $(".openPage").empty();
+        // $(".openPage").empty();
 
-        $.ajax ({
-            url: "php/getdata.php",
-            type: "post",
-            dataType: "json",
-            data: {
-                "pagID" : $(this).attr("data-pagesID")
-            },
-            success: function(data){
-                console.log("load page success: ", data);
-                $(".openPage").append("<h1 class='openPageSection'>"+ data[0].section +"</h1>");
-                $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
-            },
-            error: function(data){
-                console.log("load page error: ", data);
-            }
-        });
+        // $.ajax ({
+        //     url: "php/getdata.php",
+        //     type: "post",
+        //     dataType: "json",
+        //     data: {
+        //         "pagID" : $(this).attr("href")
+        //     },
+        //     success: function(data){
+        //         console.log("load page success: ", data);
+        //         $(".openPage").append("<h1 class='openPageSection'>"+ data[0].section +"</h1>");
+        //         $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
+        //     },
+        //     error: function(data){
+        //         console.log("load page error: ", data);
+        //     }
+        // });
 
     });
 }

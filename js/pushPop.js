@@ -21,8 +21,7 @@ function showPage(pageUrl) {
   if(pageUrl == "categories"){
     $(".adminMenuPage").slideUp(300);
     listCategories();
-            
-        $(".allcategories").slideDown(300);
+    $(".allcategories").slideDown(300);
   }
   else if(pageUrl == "pages"){
     listPages();
@@ -30,9 +29,30 @@ function showPage(pageUrl) {
     $(".allpages").slideDown(300);
   }
   else if(!isNaN(pageUrl)){
-    $(".adminMenuPage").slideUp(300);
-    $(".openPage").slideDown(300);
-    getContentByPag();
+    $(".openPage").empty();
+
+    $.ajax ({
+        url: "php/getdata.php",
+        type: "post",
+        dataType: "json",
+        data: {
+            "pagID" : pageUrl
+        },
+        success: function(data){
+            console.log("load page success: ", data);
+            $(".openPage").append("<h1 class='openPageSection'>"+ data[0].section +"</h1>");
+            $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
+            $(".adminMenuPage").slideUp(300);
+            $(".openPage").slideDown(300);
+        },
+        error: function(data){
+            console.log("load page error: ", data);
+        }
+    });
+    console.log("lolek");
+  }
+  else{
+
   }
 }
 
