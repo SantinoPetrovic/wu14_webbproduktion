@@ -3,7 +3,7 @@ $(function(){
 
 
 	$(".buttonPage").click(function(){
-        // reloadTheHeader();      
+        // reloadTheHeader();
 	});
 
 
@@ -41,10 +41,10 @@ $(function(){
                 alert('Page saved!');
 				console.log("store_content success: ", data);
                 console.log($("option:selected").val());
-                $("#pageSelectCategory").empty();
                 reloadTheHeader();
                 loadThePage();
-                
+                $("#greetings").slideDown(300);
+
 			},
 			error: function(data){
 				console.log("store_content error: ", data);
