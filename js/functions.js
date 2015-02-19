@@ -141,6 +141,9 @@ function listPages() {
                     $(".editPageField").append(
                         "<div class='form-group'><label class='col-sm-3 control-label'>Add to category: </label><div class='col-sm-8'><select id='pageEditCategory'></select></div></div>"
                     );
+                    $(".editPageField").append(
+                        "<div class='form-group'><label class='col-sm-3 control-label'>Add image:</label><div class='col-sm-8'><input type='file' id='editFile' name='img'/></div></div>"
+                    );
 
                     $.ajax ({
                         url: "php/getdataCategory.php",

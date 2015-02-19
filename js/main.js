@@ -24,12 +24,15 @@ $(function(){
 
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){
+        var filename = $('#file').val().replace(/C:\\fakepath\\/i, '')
 		var insertContent = {
 			":title" : $("#titleValue").val(),
             ":section" : $("#sectionValue").val(),
 			":content" : $("#contentValue").val(),
+            ":path" : filename,
             ":category_id" : $("#pageSelectCategory option:selected").attr('data-categoryID')
 		};
+        console.log(filename);
 		$.ajax({
 			url: "php/savedata.php",
 			type: "post",
