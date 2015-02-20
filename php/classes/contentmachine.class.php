@@ -52,7 +52,7 @@ class ContentMachine extends PDOHelper {
     }
 
     public function saveEditedPageByPag($insertEditedPage) {
-        $sql = "UPDATE images SET image_name = (:image_name) WHERE image_id = :image_id; UPDATE pages, images SET pages.title = (:title), pages.section = (:section), pages.content = (:content), pages.category_id = (:category_id) pages.image_id = (SELECT image_id FROM images WHERE image_name = :image_name) WHERE page_id = :page_id";
+        $sql = "UPDATE images SET image_name = (:image_name) WHERE image_id = :image_id; UPDATE pages SET title = (:title), section = (:section), content = (:content), category_id = (:category_id) WHERE page_id = :page_id";
         $this->query($sql, $insertEditedPage);
     }
 
