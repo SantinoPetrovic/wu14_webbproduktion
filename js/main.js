@@ -103,6 +103,7 @@ $(function(){
             ":section" : $("#editSectionValue").val(),
             ":content" : $("#editContentValue").val(),
             ":image_name" : editedFilename,
+            ":image_id" : $("#dataPage").attr('data-imageID'),
             ":category_id" : $("#pageEditCategory option:selected").attr('data-categoryID'),
             ":page_id" : $("#dataPage").attr('data-pagesID')
         };

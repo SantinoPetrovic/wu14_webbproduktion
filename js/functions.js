@@ -130,7 +130,7 @@ function listPages() {
                     //console.log("Edit page data: ", data);
                     $(".editPageField").empty();
                     $(".editPageField").append(
-                        "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
+                        "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-imageID='" + data[0].image_id +"' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"
                     );
                     $(".editPageField").append(
                         "<div class='form-group'><label class='col-sm-3 control-label'>Section</label><div class='col-sm-8'><input type='text' class='form-control' id='editSectionValue' value='"+ data[0].section +"'></div></div>"
@@ -144,7 +144,6 @@ function listPages() {
                     $(".editPageField").append(
                         "<div class='form-group'><label class='col-sm-3 control-label'>Add image:</label><div class='col-sm-8'><input type='file' id='editFile' name='img'/></div></div>"
                     );
-
                     $.ajax ({
                         url: "php/getdataCategory.php",
                         type: "post",

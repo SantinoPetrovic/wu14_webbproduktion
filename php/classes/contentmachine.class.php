@@ -3,10 +3,7 @@
 
 class ContentMachine extends PDOHelper {
 
-    protected $user_info = array("user_id" => 1);
-
     public function saveContent($insertContent) {
-        // $insertContent[":user_id"] = $this->user_info["user_id"];
         $sql = "INSERT INTO images (image_name) VALUES (:image_name); INSERT INTO pages (title, section, content, category_id, image_id) VALUES (:title, :section, :content, :category_id, (SELECT image_id FROM images WHERE image_name = :image_name))";
         $this->query($sql, $insertContent);
     }
@@ -55,7 +52,7 @@ class ContentMachine extends PDOHelper {
     }
 
     public function saveEditedPageByPag($insertEditedPage) {
-        $sql = "UPDATE pages SET title = (:title), section = (:section), content = (:content), category_id = (:category_id) WHERE page_id = :page_id ";
+        $sql = "UPDATE images SET image_name = (:image_name) WHERE image_id = :image_id; UPDATE pages, images SET pages.title = (:title), pages.section = (:section), pages.content = (:content), pages.category_id = (:category_id) pages.image_id = (SELECT image_id FROM images WHERE image_name = :image_name) WHERE page_id = :page_id";
         $this->query($sql, $insertEditedPage);
     }
 
