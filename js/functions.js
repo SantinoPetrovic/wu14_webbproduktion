@@ -70,8 +70,8 @@ function listCategories() {
             }
 
             $(".editCategoryListItem").click(function(){
-                $(".adminMenuPage").slideUp(300);
-                $(".editCategory").slideDown(300);
+                $(".adminMenuPage").slideUp(600);
+                $(".editCategory").slideDown(600);
 
                 $.ajax ({
                     url: "php/getdataCategory.php",
@@ -116,8 +116,8 @@ function listPages() {
         }
 
         $(".editPagesListItem").click(function(){
-            $(".adminMenuPage").slideUp(300);
-            $(".editPage").slideDown(300);
+            $(".adminMenuPage").slideUp(600);
+            $(".editPage").slideDown(600);
 
             $.ajax ({
                 url: "php/getdata.php",

@@ -19,18 +19,18 @@ function showPage(pageUrl) {
     reloadTheHeader();
     console.log("pageUrl: ", pageUrl);
     if(pageUrl == "categories"){
-        $(".adminMenuPage").slideUp(300);
+        $(".adminMenuPage").slideUp(600);
         listCategories();
-        $(".allcategories").slideDown(300);
+        $(".allcategories").slideDown(600);
     }
     else if(pageUrl == false){
         console.log("hit");
-        $("#greetings").slideDown(300);
+        $("#greetings").slideDown(600);
     }
     else if(pageUrl == "pages"){
         listPages();
-        $(".adminMenuPage").slideUp(300);
-        $(".allpages").slideDown(300);
+        $(".adminMenuPage").slideUp(600);
+        $(".allpages").slideDown(600);
     }
     else if(!isNaN(pageUrl)){
         $(".openPage").empty();
@@ -49,8 +49,8 @@ function showPage(pageUrl) {
                     $(".openPage").append("<img class='openPageImage' src='imgs/"+ data[0].image_name +"'>");
                 }
                 $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
-                $(".adminMenuPage").slideUp(300);
-                $(".openPage").slideDown(300);
+                $(".adminMenuPage").slideUp(600);
+                $(".openPage").slideDown(600);
             },
             error: function(data){
                 console.log("load page error: ", data);

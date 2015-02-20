@@ -2,13 +2,13 @@ $(function(){
     pushPopListeners();
 
     $(".newCategory").click(function(){
-        $(".allcategories").slideUp(300);
-        $(".addAsCategory").slideDown(300);
+        $(".allcategories").slideUp(600);
+        $(".addAsCategory").slideDown(600);
     });
 
     $(".newPage").click(function(){
-        $(".allpages").slideUp(300);
-        $(".addAsPage").slideDown(300);
+        $(".allpages").slideUp(600);
+        $(".addAsPage").slideDown(600);
     });
 
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
@@ -35,7 +35,7 @@ $(function(){
                 console.log($("option:selected").val());
                 reloadTheHeader();
                 loadThePage();
-                $("#greetings").slideDown(300);
+                $("#greetings").slideDown(600);
 
 			},
 			error: function(data){
