@@ -84,3 +84,16 @@ footer {
     margin-bottom: 20px;
     font-family: 'Rokkitt', serif;
 }
+
+.openPageImage {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 380px) {
+    .openPageImage {
+        width: 100%;
+        height: 100%;
+}
+}

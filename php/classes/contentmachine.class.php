@@ -41,7 +41,7 @@ class ContentMachine extends PDOHelper {
     }
 
     public function getContentByPag($page_id) {
-        $sql ="SELECT * FROM pages WHERE page_id = :page_id";
+        $sql ="SELECT * FROM pages, images WHERE pages.page_id = :page_id AND pages.image_id = images.image_id";
         $parameters = array(":page_id" => $page_id);
         return $this->query($sql, $parameters);
     }

@@ -45,6 +45,12 @@ function showPage(pageUrl) {
             success: function(data){
                 console.log("load page success: ", data);
                 $(".openPage").append("<h1 class='openPageSection'>"+ data[0].section +"</h1>");
+                if(data[0].image_name.length == 0){
+                    $(".openPage").append("<img class='openPageImage' src='imgs/no-image.jpg'>");
+                }
+                else {
+                $(".openPage").append("<img class='openPageImage' src='imgs/"+ data[0].image_name +"'>");
+                }
                 $(".openPage").append("<p class='openPageContent'>"+ data[0].content +"</p>");
                 $(".adminMenuPage").slideUp(300);
                 $(".openPage").slideDown(300);
