@@ -1,17 +1,6 @@
 $(function(){
     pushPopListeners();
 
-
-	$(".buttonPage").click(function(){
-        // reloadTheHeader();
-	});
-
-
-
-    $(".buttonCategory").click(function(){
-        // reloadTheHeader();
-    });
-
     $(".newCategory").click(function(){
         $(".allcategories").slideUp(300);
         $(".addAsCategory").slideDown(300);
@@ -29,7 +18,7 @@ $(function(){
 			":title" : $("#titleValue").val(),
             ":section" : $("#sectionValue").val(),
 			":content" : $("#contentValue").val(),
-            ":path" : filename,
+            ":image_name" : filename,
             ":category_id" : $("#pageSelectCategory option:selected").attr('data-categoryID')
 		};
         console.log(filename);
@@ -108,10 +97,12 @@ $(function(){
 
 
     $(".savePage").click(function(){
+        var editedFilename = $('#editFile').val().replace(/C:\\fakepath\\/i, '')
         var insertEditedPage = {
             ":title" : $("#editedPage").val(),
             ":section" : $("#editSectionValue").val(),
             ":content" : $("#editContentValue").val(),
+            ":image_name" : editedFilename,
             ":category_id" : $("#pageEditCategory option:selected").attr('data-categoryID'),
             ":page_id" : $("#dataPage").attr('data-pagesID')
         };

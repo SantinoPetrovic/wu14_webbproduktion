@@ -7,7 +7,7 @@ class ContentMachine extends PDOHelper {
 
     public function saveContent($insertContent) {
         // $insertContent[":user_id"] = $this->user_info["user_id"];
-        $sql = "INSERT INTO pages (title, section, content, category_id) VALUES (:title, :section, :content, :category_id)";
+        $sql = "INSERT INTO images (image_name) VALUES (:image_name); INSERT INTO pages (title, section, content, category_id, image_id) VALUES (:title, :section, :content, :category_id, (SELECT image_id FROM images WHERE image_name = :image_name))";
         $this->query($sql, $insertContent);
     }
 
