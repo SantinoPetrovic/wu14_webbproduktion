@@ -13,7 +13,6 @@ function loadThePage(){
             $(".categoryContainer").append(
                 "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>" + categories[i].title + "<span class='caret'></span></a><ul class='dropdown-menu pageContent' data-categoryID='" + categories[i].category_id + "'role='menu'></ul></li>"
                 );
-            // calling a function after the categories will be displayed on menu.
             var pages = categories[i].pages;
             for(var j = 0; j < pages.length; j++){
                 $(".categoryContainer ul[data-categoryID='"+categories[i].category_id+"']").append(
@@ -36,7 +35,6 @@ function loadThePage(){
         dataType: "json",
         success: function(data){
             $(".allInformation").empty();
-            //console.log("footer success: ", data);
             $(".informationContainer").append(
                 "<p class='allInformation'><strong>Adress:</strong> "+ data[0].street + "</p>  <p class='allInformation'> Phone-number: "+ data[0].phone_number +"</p> "
                 );
@@ -54,6 +52,7 @@ function reloadTheHeader() {
     $(".adminMenuPage").hide();
 }
 
+//List all the categories when you wanna see categories.
 function listCategories() {
     $.ajax ({
         url: "php/getdataCategory.php",
@@ -61,7 +60,6 @@ function listCategories() {
         dataType: "json",
         success: function(data){
             var categories = data;
-            //console.log(categories);
             $('.allCategoriesContainer .list-group .list-group-item').remove();
             for(var i = 0; i < categories.length; i++){
                 $(".allCategoriesContainer .list-group").append(
@@ -69,6 +67,7 @@ function listCategories() {
                 );
             }
 
+            //When you wanna edit a category, you get all the values from the table categories.
             $(".editCategoryListItem").click(function(){
                 $(".adminMenuPage").slideUp(600);
                 $(".editCategory").slideDown(600);
@@ -86,7 +85,6 @@ function listCategories() {
                         $(".editCategoryField").append(
                             "<label class='col-sm-3 control-label editCategoryContainer'>Title</label><div class='col-sm-8 editCategoryContainer'><input type='text' class='form-control' id='editedCategory' data-categoriesID='"+ data[0].category_id +"' value='"+ data[0].title +"'></div>"
                         );
-                        // console.log("attr on this: ", $("#editedCategory").attr('data-categoriesID'));
                     },
                     error: function(data){
                         console.log("get_category error: ", data);
@@ -99,7 +97,7 @@ function listCategories() {
         }
     });
 }
-
+//List all the pages when you wanna see pages.
 function listPages() {
     $.ajax ({
         url: "php/getdata.php",
@@ -114,7 +112,7 @@ function listPages() {
                 "<li class='list-group-item editPagesListItem' data-pagesID='" + pages[i].page_id + "'>" + pages[i].title + "</li>"
             );
         }
-
+        //When you wanna edit a page, you get all the values from the table pages.
         $(".editPagesListItem").click(function(){
             $(".adminMenuPage").slideUp(600);
             $(".editPage").slideDown(600);
@@ -127,7 +125,6 @@ function listPages() {
                     "pagID" : $(this).attr("data-pagesID")
                 },
                 success: function(data){
-                    //console.log("Edit page data: ", data);
                     $(".editPageField").empty();
                     $(".editPageField").append(
                         "<div class='form-group'><label class='col-sm-3 control-label editPagesContainer'>Title</label><div class='col-sm-8 editPagesContainer' id='dataPage' data-imageID='" + data[0].image_id +"' data-pagesID='"+ data[0].page_id +"'><input type='text' class='form-control' id='editedPage' value='"+ data[0].title +"'></div></div>"

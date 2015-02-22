@@ -1,12 +1,4 @@
 
-
-
-/**
- * Navigation & history push/pop-state
- *
- */
-
-//function to show/hide sections
 function showPage(pageUrl) {
 
 
@@ -14,24 +6,27 @@ function showPage(pageUrl) {
 
 
 
-
+    //The first functions actually begins here.
     loadThePage();
     reloadTheHeader();
     console.log("pageUrl: ", pageUrl);
+
     if(pageUrl == "categories"){
         $(".adminMenuPage").slideUp(600);
         listCategories();
         $(".allcategories").slideDown(600);
     }
+
     else if(pageUrl == false){
-        console.log("hit");
         $("#greetings").slideDown(600);
     }
+
     else if(pageUrl == "pages"){
         listPages();
         $(".adminMenuPage").slideUp(600);
         $(".allpages").slideDown(600);
     }
+    // Should it be that pageUrl will be a number, send that number as ajax, then get the page with that number as id.
     else if(!isNaN(pageUrl)){
         $(".openPage").empty();
 
@@ -56,7 +51,6 @@ function showPage(pageUrl) {
                 console.log("load page error: ", data);
             }
         });
-        console.log("lolek");
     }
 }
 

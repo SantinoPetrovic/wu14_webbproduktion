@@ -13,6 +13,7 @@ $(function(){
 
     // When you're done with your formular and you press the submit button, the page will be saved in DB.
 	$(".submitPage").click(function(){
+        // the variable filename will remove the path of the value in image but still keep the actual name of the file.
         var filename = $('#file').val().replace(/C:\\fakepath\\/i, '')
 		var insertContent = {
 			":title" : $("#titleValue").val(),
@@ -69,7 +70,7 @@ $(function(){
             });
         return false;
     });
-
+    // when done editing category and pressed save, it will overwrite the value in data with new data in DB.
     $(".saveCategory").click(function(){
         var insertEditedCategory = {
             ":title" : $("#editedCategory").val(),
@@ -95,7 +96,7 @@ $(function(){
             });
     });
 
-
+    // when done editing page and pressed save, it will overwrite the value in data with new data in DB.
     $(".savePage").click(function(){
         var editedFilename = $('#editFile').val().replace(/C:\\fakepath\\/i, '')
         var insertEditedPage = {
@@ -126,7 +127,7 @@ $(function(){
             }
         });
     });
-
+    // when pressing delete button and confirm the delete, the category will be deleted in DB.
     $(".deleteCategory").click(function(){
     if(confirm('Are you sure you want to delete the category and all its pages?')) {
         var deleteCategory = {
@@ -152,7 +153,7 @@ $(function(){
         });
     }
     });
-
+    // when pressing delete button and confirm the delete, the page will be deleted in DB.
     $(".deletePage").click(function(){
     if(confirm('Are you sure you want to delete the page?')) {
         var deletePage = {
