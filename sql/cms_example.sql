@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: localhost
--- Skapad: 22 feb 2015 kl 11:41
+-- Skapad: 22 feb 2015 kl 11:51
 -- Serverversion: 5.6.19-0ubuntu0.14.04.1
 -- PHP-version: 5.5.9-1ubuntu4.3
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Databas: `cms-example`
+-- Databas: `cms_example`
 --
 
 -- --------------------------------------------------------
@@ -29,7 +29,6 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `content` text,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
@@ -37,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Dumpning av Data i tabell `categories`
 --
 
-INSERT INTO `categories` (`category_id`, `title`, `content`) VALUES
-(21, 'Anime', NULL),
-(22, 'Games', NULL),
-(23, 'Board games', NULL),
-(24, 'Manga', NULL);
+INSERT INTO `categories` (`category_id`, `title`) VALUES
+(21, 'Anime'),
+(22, 'Games'),
+(23, 'Board games'),
+(24, 'Manga');
 
 -- --------------------------------------------------------
 
